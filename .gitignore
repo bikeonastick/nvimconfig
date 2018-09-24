@@ -1,0 +1,6 @@
+.netrwhist
+plugged
+!.gitignore
+autoload/plug.vim
+.netrwbook
+.netrwhist
