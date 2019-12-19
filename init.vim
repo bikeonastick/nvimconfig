@@ -1,5 +1,8 @@
 " for livedown
-let g:livedown_browser = "safari"
+"let g:livedown_browser = "safari"
+
+" the port on which Livedown server will run
+" let g:livedown_port = 1337
 
 " for closing html tags
 :iabbrev <// </<C-X><C-O>
@@ -223,13 +226,6 @@ inoremap <tab> <c-r>=InsertTabWrapper()<cr>
 inoremap <s-tab> <c-n>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" OPEN FILES IN DIRECTORY OF CURRENT FILE
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-cnoremap %% <C-R>=expand('%:h').'/'<cr>
-map <leader>e :edit %%
-map <leader>v :view %%
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " RENAME CURRENT FILE
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 function! RenameFile()
@@ -328,8 +324,10 @@ function! s:GetVisualSelection()
   endtry
 endfunction
 
-
-
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" tags commands
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+map <C-W>] <C-W>]:tab split<CR>gT:q<CR>gt 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " diff commands
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -368,17 +366,22 @@ command! Rb call s:RunShellCommand('ruby ' .expand('%:p'))
 command! -complete=shellcmd -nargs=+ Shell call s:RunShellCommand(<q-args>)
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" execute cukes and specs for development
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"   spec on this file
-command! Spec call s:RunShellCommand('bundle exec rspec ' .expand('%:p'))
-"   spec on this line of the current file
-command! SpecL call s:RunShellCommand('bundle exec rspec ' .expand('%p').':'.line("."))
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " commands for inserting text
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-:command Iamp :normal! i <html <C-v>u26a1><ESC>
+:command! Iamp :normal! i <html <C-v>u26a1><ESC>
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" setting up markdown composer
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"function! BuildComposer(info)
+"  if a:info.status != 'unchanged' || a:info.force
+"    if has('nvim')
+"      !cargo build --release
+"    else
+"      !cargo build --release --no-default-features --features json-rpc
+"    endif
+"  endif
+"endfunction
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " using vim-plug
@@ -411,24 +414,49 @@ Plug 'https://github.com/tpope/vim-rails.git'
 " vim-surround
 Plug 'https://github.com/tpope/vim-surround.git'
 " vim-markdown
-Plug 'https://github.com/tpope/vim-markdown.git'
+"Plug 'https://github.com/tpope/vim-markdown.git'
 " vim-elixir
 Plug 'https://github.com/elixir-lang/vim-elixir.git'
 " vim-go
 Plug 'https://github.com/fatih/vim-go.git'
 " vim-livedown
-Plug 'https://github.com/shime/vim-livedown.git'
+" Plug 'https://github.com/shime/vim-livedown.git'
 " vim-matchit
 Plug 'https://github.com/jwhitley/vim-matchit.git'
 " webapi-vim
 Plug 'https://github.com/vim-scripts/WebAPI.vim.git'
 " python-syntax
 Plug 'https://github.com/hdima/python-syntax.git'
+" flutter
+Plug 'https://github.com/thosakwe/vim-flutter.git'
+" Dim paragraphs above and below the active paragraph.
+Plug 'junegunn/limelight.vim'
+" Distraction free writing by removing UI elements and centering everything.
+Plug 'junegunn/goyo.vim'
+"markdown support
+Plug 'plasticboy/vim-markdown'
+"browser preview for markdown
+Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install' }
+
 " enables neovim JS remote plugins
 Plug 'neovim/node-host', { 'do': 'npm install -g neovim' }
 
 " Add plugins to &runtimepath
 call plug#end()
+
+"...............................................................................
+" plasticboy/vim-markdown
+"...............................................................................
+autocmd FileType markdown set conceallevel=0
+autocmd FileType markdown normal zR
+
+let g:vim_markdown_frontmatter=1
+
+"...............................................................................
+" iamcco/markdown-preview.nvim
+"...............................................................................
+let g:mkdp_refresh_slow=1
+let g:mkdp_markdown_css='~/.config/nvim/md_preview_gh.css'
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " COLOR
