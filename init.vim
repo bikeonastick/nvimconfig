@@ -161,8 +161,9 @@ augroup vimrcEx
   autocmd FileType ruby,haml,eruby,yaml,html,sass,cucumber set ai sw=2 sts=2 et
   autocmd FileType python set sw=4 sts=4 et
   autocmd FileType javascript set ai sw=4 sts=4 ts=4 et
+  autocmd FileType kotlin set ai sw=4 sts=4 ts=4 et
 
-  autocmd BufRead *.md  set ai sw=4 sts=4 ts=4 et formatoptions=tcroqn2 comments=n:&gt;
+  autocmd BufRead *.md  set ai sw=2 sts=2 ts=2 et formatoptions=tcroqn2 comments=n:&gt;
 
   " Before writing a file check if the path for it exists. If it doesn't then
   " mkdir -p the path so that the file can be saved.
@@ -433,6 +434,10 @@ Plug 'https://github.com/thosakwe/vim-flutter.git'
 Plug 'junegunn/limelight.vim'
 " Distraction free writing by removing UI elements and centering everything.
 Plug 'junegunn/goyo.vim'
+"kotlin support
+Plug 'udalov/kotlin-vim'
+" editorconfig support
+Plug 'editorconfig/editorconfig-vim'
 "markdown support
 Plug 'plasticboy/vim-markdown'
 "browser preview for markdown
@@ -451,6 +456,7 @@ autocmd FileType markdown set conceallevel=0
 autocmd FileType markdown normal zR
 
 let g:vim_markdown_frontmatter=1
+let g:vim_markdown_folding_disabled = 1
 
 "...............................................................................
 " iamcco/markdown-preview.nvim
