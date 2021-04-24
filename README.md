@@ -11,14 +11,14 @@ Feel free to steal what you'd like, though.
 
 ## Installation:
 
-1. `git clone git://github.com/bikeonastick/nvimconfig.git`
-1. `cd nvimconfig`
-1. `git submodule init`
-1. `git submodule update`
-1. `ln -s `pwd` ~/.config/nvim`
-1. `ln -s `pwd`/vim-plug/plug.vim `pwd`/autoload/plug.vim`
+1. ```git clone git://github.com/bikeonastick/nvimconfig.git```
+1. ```cd nvimconfig```
+1. ```git submodule init```
+1. ```git submodule update```
+1. ```ln -s `pwd` ~/.config/nvim```
+1. ```ln -s `pwd`/vim-plug/plug.vim `pwd`/autoload/plug.vim```
 1. open nvim and run the plugin install command 
-   `:PlugInstall`
+   ```:PlugInstall```
 
 
 ## Color Scheme

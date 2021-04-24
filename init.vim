@@ -1,8 +1,4 @@
-" for livedown
-"let g:livedown_browser = "safari"
-
-" the port on which Livedown server will run
-" let g:livedown_port = 1337
+source $HOME/.config/nvim/coc.vimrc
 
 " for closing html tags
 :iabbrev <// </<C-X><C-O>
@@ -109,7 +105,7 @@ set winwidth=79
 set winheight=29
 
 " The shell to use when using :!
-set shell=bash
+set shell=zsh
 
 " Prevent Vim from clobbering the scrollback buffer. See
 " http://www.shallowsky.com/linux/noaltscreen.html
@@ -143,6 +139,10 @@ set wildmode=longest,list
 
 " make tab completion for files/buffers act like bash
 set wildmenu
+
+" setting up modelines
+set modeline
+set modelines=5
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " CUSTOM AUTOCMDS
@@ -442,6 +442,8 @@ Plug 'editorconfig/editorconfig-vim'
 Plug 'plasticboy/vim-markdown'
 "browser preview for markdown
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install' }
+" COC release branch 
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 " enables neovim JS remote plugins
 Plug 'neovim/node-host', { 'do': 'npm install -g neovim' }
